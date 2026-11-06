@@ -574,3 +574,4 @@ body.dark-theme .theme-icon-moon {
     background: linear-gradient(to right, transparent, var(--surface));
     pointer-events: none
 }
+#adminLink[hidden] { display: none; }
