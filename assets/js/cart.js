@@ -120,8 +120,15 @@ function openCheckout() {
     }
     closeModal('quickViewModal');
     closeCart();
+    if (authConfigured() && !currentUser) {          // real orders need an account
+        pendingCheckout = true;
+        showToast('Please log in', 'Log in or sign up to place your order.', 'info');
+        openAuth();
+        return;
+    }
     renderCheckoutSummary();
     openModal('checkoutModal');
+    prepareCheckout();                               // saved address + prescription picker (account.js)
 }
 
 function renderCheckoutSummary() {
@@ -151,13 +158,42 @@ function selectPayment(el) {
     renderCheckoutSummary();                      // COD fee appears / disappears
 }
 
-function placeOrder(e) {
+function selectedPayment() {
+    const r = document.querySelector('.payment-method.selected input');
+    return r ? r.value : 'upi';
+}
+
+async function placeOrder(e) {
     e.preventDefault();                           // the browser has already validated required fields
     if (cart.length === 0) { showToast('Cart is empty', 'Add products before checking out', 'error'); return; }
 
-    const orderId = 'MPC' + Date.now().toString().slice(-6);
-    showToast('Order Placed! 🎉', `Order ID: ${orderId}. Our pharmacist will call you shortly.`, 'success');
+    /* demo mode: Supabase not configured -> keep the old local behaviour */
+    if (!authConfigured()) { finishOrder('MPC' + Date.now().toString().slice(-6), 'Our pharmacist will call you shortly.'); return; }
+    if (!currentUser) { pendingCheckout = true; openAuth(); return; }
 
+    const btn = document.querySelector('.place-order-btn');
+    const label = btn.innerHTML;
+    btn.disabled = true; btn.textContent = 'Placing order…';
+    try {
+        const address = readAddress();
+        const rx = cartNeedsRx() ? document.getElementById('rxSelect').value : null;
+        const items = cart.map(i => ({ id: i.id, qty: i.qty }));
+        const order = await createOrder(items, address, selectedPayment(), rx);
+
+        const saveBox = document.getElementById('saveAddr');
+        if (saveBox.checked && !document.getElementById('savedAddr').value) {
+            try { await insertAddress(address); } catch (err) { console.warn('Address not saved:', err.message); }
+        }
+        finishOrder(order.out_order_no, 'You can track it under Account → My Orders.');
+    } catch (err) {
+        showToast('Could not place order', err.message, 'error');
+    } finally {
+        btn.disabled = false; btn.innerHTML = label;
+    }
+}
+
+function finishOrder(orderNo, note) {
+    showToast('Order Placed! 🎉', `Order ID: ${orderNo}. ${note}`, 'success');
     cart = [];
     saveCart();
     updateCartUI();
@@ -165,6 +201,5 @@ function placeOrder(e) {
 
     document.getElementById('checkoutForm').reset();
     document.querySelectorAll('.payment-method').forEach((m, i) => m.classList.toggle('selected', i === 0));
-
-    setTimeout(() => showToast('Confirmation Email', 'Order confirmation has been sent to your registered email address', 'info'), 1500);
+    loadProductsFromSupabase();                   // refresh stock numbers
 }

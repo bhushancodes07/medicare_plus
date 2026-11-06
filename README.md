@@ -28,3 +28,15 @@ assets/
 3. Authentication → Providers: **Email** is on by default. For **Phone OTP**, enable Phone and connect an SMS provider (e.g. Twilio).
 4. Authentication → URL Configuration: set **Site URL** and add your page URL under **Redirect URLs** (needed for confirmation and password-reset links).
 5. Serve the site over http(s) (e.g. VS Code "Live Server" or your hosting). Email links do not work from a `file://` page.
+
+## Database setup (products, orders, addresses, prescriptions)
+1. Supabase → **SQL Editor → New query** → paste all of `supabase/schema.sql` → **Run**.
+2. New query → paste all of `supabase/seed.sql` → **Run** (loads the 20 demo products).
+3. Reload the site. Products now come from the database (edit them in **Table Editor → products**).
+   If the database is unreachable the site falls back to the products in `assets/js/data.js`.
+
+Notes
+- Orders are created only by the `place_order()` database function, which recalculates prices, stock and
+  totals itself, so customers cannot change prices from the browser.
+- Prescriptions go to a **private** bucket; each user can only access files in their own folder.
+- Card / UPI / net-banking orders are saved with `payment_status = 'pending'` until Razorpay is added.

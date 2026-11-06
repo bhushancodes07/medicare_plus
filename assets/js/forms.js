@@ -29,13 +29,29 @@ function handleRxUpload(e) {
     e.target.value = '';                           // allow choosing the same file again
 }
 
-function handleRxFile(file) {
+async function handleRxFile(file) {
     const okType = file.type.startsWith('image/') || file.type === 'application/pdf';
     if (!okType) { showToast('Unsupported file', 'Please upload a JPG, PNG or PDF prescription.', 'error'); return; }
     if (file.size > RX_MAX_MB * 1024 * 1024) { showToast('File too large', `Maximum file size is ${RX_MAX_MB} MB.`, 'error'); return; }
 
-    showToast('Prescription Uploaded! 📋', `“${file.name}” received. Our pharmacist will verify and call you within 30 minutes.`, 'success');
-    setTimeout(() => showToast('Verification in Progress', 'Our licensed pharmacist is reviewing your prescription. Please keep your phone available.', 'info'), 2000);
+    /* demo mode (Supabase not configured) */
+    if (!authConfigured()) {
+        showToast('Prescription Uploaded! 📋', `“${file.name}” received (demo mode).`, 'success');
+        return;
+    }
+    if (!currentUser) {
+        showToast('Please log in', 'Log in to upload your prescription securely.', 'info');
+        openAuth();
+        return;
+    }
+    showToast('Uploading…', `“${file.name}”`, 'info');
+    try {
+        const row = await uploadPrescription(file);
+        showToast('Prescription Uploaded! 📋', 'Our pharmacist will review it. Find it under Account → My Prescriptions.', 'success');
+        onPrescriptionUploaded(row);
+    } catch (err) {
+        showToast('Upload failed', err.message, 'error');
+    }
 }
 
 function subscribeNewsletter(e) {

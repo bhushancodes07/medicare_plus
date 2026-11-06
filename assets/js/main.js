@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupSearch();
     setupModals();
     initAuth();
+    loadProductsFromSupabase();
 
     /* filter chips */
     document.querySelectorAll('.filter-chip').forEach(chip => {

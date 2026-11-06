@@ -115,3 +115,133 @@ body.dark-theme .auth-setup {
     word-break: break-all
 }
 .otp-gap{margin-top:16px}
+
+.auth-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+/* checkout extras */
+.check-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    cursor: pointer
+}
+
+.check-row input {
+    width: auto
+}
+
+.rx-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    line-height: 1.5
+}
+
+.rx-inline-btn {
+    cursor: pointer;
+    width: 100%
+}
+
+/* My Orders / Prescriptions */
+.hub-empty {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 36px 12px;
+    line-height: 1.8
+}
+
+.hub-upload {
+    cursor: pointer;
+    margin-top: 12px
+}
+
+.order-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 12px
+}
+
+.order-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px
+}
+
+.order-date {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px
+}
+
+.order-items {
+    list-style: none;
+    font-size: 13px;
+    border-top: 1px dashed var(--border);
+    padding-top: 10px
+}
+
+.order-items li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 3px 0
+}
+
+.order-total {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    margin-top: 10px;
+    padding-top: 10px;
+    font-size: 14px
+}
+
+.status-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 50px;
+    white-space: nowrap;
+    background: var(--bg-soft);
+    color: var(--text-muted)
+}
+
+.st-placed,
+.st-pending {
+    background: #FEF3C7;
+    color: #92400E
+}
+
+.st-confirmed,
+.st-packed,
+.st-shipped {
+    background: #DBEAFE;
+    color: #1E40AF
+}
+
+.st-delivered,
+.st-approved {
+    background: #D1FAE5;
+    color: #065F46
+}
+
+.st-cancelled,
+.st-rejected {
+    background: #FEE2E2;
+    color: #991B1B
+}
+
+.rx-view {
+    padding: 8px 18px;
+    font-size: 13px
+}

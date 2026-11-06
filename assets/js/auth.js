@@ -24,6 +24,11 @@ function initAuth() {
 function setUser(user) {
     currentUser = user;
     renderAuthState();
+    if (user && pendingCheckout) {                       // they logged in from the checkout button
+        pendingCheckout = false;
+        closeModal('authModal');
+        openCheckout();
+    }
 }
 
 function displayName(u) {
@@ -63,7 +68,7 @@ function openAuth() {
 function setAuthMode(mode) {
     authMode = mode;
     clearAuthError();
-    document.querySelectorAll('.auth-tab').forEach(t => t.classList.toggle('active', t.dataset.mode === mode));
+    document.querySelectorAll('#authTabs .auth-tab').forEach(t => t.classList.toggle('active', t.dataset.mode === mode));
     document.getElementById('authForm').hidden = !['login', 'signup'].includes(mode);
     document.getElementById('phoneForm').hidden = mode !== 'phone';
     document.getElementById('recoveryForm').hidden = mode !== 'recovery';
@@ -167,6 +172,7 @@ function verifyOtp(e) {
 async function logout() {
     if (sb) await sb.auth.signOut();
     setUser(null);
+    savedAddresses = [];
     closeModal('authModal');
     showToast('Logged out', 'See you soon!', 'info');
 }
