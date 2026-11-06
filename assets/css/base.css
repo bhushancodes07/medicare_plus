@@ -1,0 +1,248 @@
+/* ===== BASE: reset, variables, buttons, shared helpers ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+
+:root {
+    --primary: #0EA5E9;
+    --primary-dark: #0369A1;
+    --primary-light: #E0F2FE;
+    --teal: #14B8A6;
+    --teal-dark: #0F766E;
+    --accent: #F59E0B;
+    --accent-light: #FEF3C7;
+    --success: #10B981;
+    --danger: #EF4444;
+    --bg: #F8FAFC;
+    --bg-soft: #F1F5F9;
+    --white: #FFFFFF;
+    --text: #0F172A;
+    --text-muted: #64748B;
+    --border: #E2E8F0;
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, .06);
+    --shadow: 0 4px 12px rgba(15, 23, 42, .08);
+    --shadow-lg: 0 12px 32px rgba(15, 23, 42, .12);
+    --radius: 14px;
+    --radius-sm: 8px;
+    --radius-lg: 24px;
+    --transition: .25s cubic-bezier(.4, 0, .2, 1);
+    --container: 1240px;
+    --surface: #FFFFFF;
+    --header-offset: 96px;
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    display: block
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none
+}
+
+a {
+    text-decoration: none;
+    color: inherit
+}
+
+ul {
+    list-style: none
+}
+
+input,
+textarea,
+select {
+    font-family: inherit;
+    color: inherit
+}
+
+.container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 clamp(16px, 4vw, 24px)
+}
+
+.section {
+    padding: 72px 0
+}
+
+.section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 36px;
+    gap: 24px;
+    flex-wrap: wrap
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -.02em
+}
+
+.section-title span {
+    color: var(--primary)
+}
+
+.section-sub {
+    color: var(--text-muted);
+    margin-top: 8px;
+    max-width: 560px
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .02em
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 26px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: var(--transition);
+    white-space: nowrap
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(14, 165, 233, .3)
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(14, 165, 233, .4)
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--border);
+    color: var(--text)
+}
+
+.btn-outline:hover {
+    border-color: var(--primary);
+    color: var(--primary)
+}
+
+.btn-white {
+    background: var(--surface);
+    color: var(--primary)
+}
+
+.btn-white:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg)
+}
+
+.btn-block {
+    width: 100%
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0
+}
+
+[hidden] {
+    display: none !important
+}
+
+section[id] {
+    scroll-margin-top: var(--header-offset)
+}
+
+/* ---- Image slots: a real <img> if provided, otherwise the emoji placeholder ---- */
+.media {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.media-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain
+}
+
+.media:has(.media-img) .media-emoji {
+    display: none
+}
+
+/* ---- Shared helper classes (replace old inline styles) ---- */
+.section-alt {
+    background: var(--bg)
+}
+
+.section-flush-top {
+    padding-top: 0
+}
+
+.load-more {
+    text-align: center;
+    margin-top: 40px
+}
+
+/* ---- Animations ---- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .6s, transform .6s
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0)
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none
+    }
+}

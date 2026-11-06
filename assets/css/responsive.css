@@ -1,0 +1,506 @@
+/* ===== RESPONSIVE: desktop -> tablet -> mobile ===== */
+
+@media (max-width: 1180px) {
+    .hero-card {
+        width: 180px !important;
+        padding: 14px
+    }
+
+    .hero-main {
+        max-width: 300px
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr)
+    }
+
+    .header-inner {
+        gap: 16px
+    }
+
+    .action-label {
+        display: none
+    }
+
+    .action-btn {
+        padding: 10px
+    }
+}
+
+@media (max-width: 1024px) {
+    .cat-grid {
+        grid-template-columns: repeat(4, 1fr)
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr)
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1
+    }
+
+    .hero h1 {
+        font-size: 44px
+    }
+
+    .topbar-right {
+        display: none
+    }
+}
+
+/* Tablet: stack hero / prescription / checkout, switch hero cards to a tidy grid */
+@media (max-width: 960px) {
+    .hero .container {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 36px
+    }
+
+    .hero-image {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        min-height: 0;
+        max-width: 560px;
+        width: 100%;
+        margin: 0 auto
+    }
+
+    .hero-main {
+        grid-column: 1 / -1;
+        order: -1;
+        max-width: none !important;
+        aspect-ratio: 16 / 10;
+        padding: 28px
+    }
+
+    .hero-main-icon {
+        font-size: 80px;
+        margin-bottom: 12px
+    }
+
+    .hero-card,
+    .hero-card-1,
+    .hero-card-2 {
+        position: static;
+        width: auto !important;
+        animation: none
+    }
+
+    .rx-cta-inner,
+    .checkout-grid {
+        grid-template-columns: 1fr
+    }
+
+    .checkout-summary {
+        position: static
+    }
+}
+
+@media (max-width: 900px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr)
+    }
+
+    .test-grid,
+    .blog-grid {
+        grid-template-columns: 1fr
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr)
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    :root {
+        --header-offset: 128px
+    }
+
+    .section {
+        padding: 48px 0
+    }
+
+    .section-title {
+        font-size: 26px
+    }
+
+    .topbar {
+        font-size: 12px
+    }
+
+    .topbar-left {
+        gap: 16px;
+        justify-content: space-between;
+        width: 100%
+    }
+
+    .topbar-left a[href^="mailto"] {
+        display: none
+    }
+
+    /* header: logo + actions on row 1, full-width search on row 2 */
+    .header-inner {
+        flex-wrap: wrap;
+        gap: 10px 8px;
+        padding: 10px 0 12px
+    }
+
+    .search {
+        order: 3;
+        flex: 1 1 100%;
+        max-width: none
+    }
+
+    .search input {
+        padding: 11px 92px 11px 44px;
+        font-size: 14px
+    }
+
+    .search-icon {
+        left: 16px
+    }
+
+    .header-actions {
+        gap: 2px
+    }
+
+    .header-actions .account-btn {
+        display: none
+    }
+
+    .nav {
+        display: none
+    }
+
+    .hamburger {
+        display: flex
+    }
+
+    .hero {
+        padding: 36px 0 64px
+    }
+
+    .hero h1 {
+        font-size: 34px
+    }
+
+    .hero p {
+        font-size: 16px
+    }
+
+    .hero-badge {
+        font-size: 12px;
+        line-height: 1.4;
+        border-radius: 14px
+    }
+
+    .hero-cta .btn {
+        flex: 1 1 100%
+    }
+
+    .hero-trust {
+        gap: 18px 24px
+    }
+
+    .promo-strip {
+        padding: 22px 16px
+    }
+
+    .promo-inner {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px 12px
+    }
+
+    .promo-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 6px
+    }
+
+    .cat-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr
+    }
+
+    .section-head {
+        margin-bottom: 24px
+    }
+
+    /* filters: horizontally scrollable chips, sort select on its own line */
+    .filters {
+        flex-direction: column;
+        align-items: stretch
+    }
+
+    .filter-chips {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+        margin: 0 -16px;
+        padding: 0 16px 4px
+    }
+
+    .filter-chips::-webkit-scrollbar {
+        display: none
+    }
+
+    .sort-select {
+        margin-left: 0;
+        width: 100%
+    }
+
+    .newsletter {
+        padding: 40px 20px
+    }
+
+    .newsletter h2 {
+        font-size: 28px
+    }
+
+    .news-form {
+        flex-direction: column;
+        border-radius: 16px;
+        padding: 12px
+    }
+
+    .news-form input {
+        text-align: center
+    }
+
+    .news-form button {
+        width: 100%
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr
+    }
+
+    .store-buttons {
+        flex-direction: row;
+        flex-wrap: wrap
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start
+    }
+
+    .stat-num {
+        font-size: 36px
+    }
+
+    .rx-cta {
+        padding: 28px 18px
+    }
+
+    .rx-cta-content h2 {
+        font-size: 24px
+    }
+
+    .upload-zone {
+        padding: 28px 16px
+    }
+}
+
+/* Small phones: 2-column compact product cards, bottom-sheet modals, full-width cart */
+@media (max-width: 560px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px
+    }
+
+    .product-body {
+        padding: 10px
+    }
+
+    .product-name {
+        font-size: 13px;
+        min-height: 34px
+    }
+
+    .price {
+        font-size: 16px
+    }
+
+    .product-tags {
+        top: 8px;
+        left: 8px
+    }
+
+    .tag {
+        font-size: 10px;
+        padding: 3px 7px
+    }
+
+    .product-wishlist {
+        top: 8px;
+        right: 8px;
+        width: 32px;
+        height: 32px
+    }
+
+    .btn-cart {
+        padding: 9px 6px;
+        font-size: 12px
+    }
+
+    .btn-cart svg {
+        display: none
+    }
+
+    .btn-label-full {
+        display: none
+    }
+
+    .btn-label-short {
+        display: inline
+    }
+
+    .btn-quick {
+        width: 38px
+    }
+
+    .product-price-row .save {
+        display: none
+    }
+
+    .modal {
+        padding: 0;
+        align-items: flex-end
+    }
+
+    .modal-box {
+        max-width: 100%;
+        max-height: 92vh;
+        max-height: 92dvh;
+        border-radius: 20px 20px 0 0
+    }
+
+    .modal-head,
+    .modal-body {
+        padding: 16px
+    }
+
+    .qv-grid {
+        grid-template-columns: 1fr;
+        gap: 16px
+    }
+
+    .qv-img {
+        font-size: 90px;
+        max-height: 220px;
+        aspect-ratio: auto;
+        padding: 20px
+    }
+
+    .qv-actions {
+        flex-direction: column
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0
+    }
+
+    .cart-drawer {
+        width: 100%;
+        max-width: 100%
+    }
+
+    .toast-container {
+        left: 12px;
+        right: 12px;
+        bottom: max(12px, env(safe-area-inset-bottom))
+    }
+
+    .toast {
+        min-width: 0;
+        width: 100%;
+        max-width: none
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 24px
+    }
+
+    .logo {
+        font-size: 19px;
+        gap: 8px
+    }
+
+    .logo-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 19px;
+        border-radius: 10px
+    }
+
+    .hero h1 {
+        font-size: 29px
+    }
+
+    .hero-trust-item .num {
+        font-size: 19px
+    }
+
+    .hero-main {
+        aspect-ratio: auto;
+        padding: 28px 20px
+    }
+
+    .hero-card {
+        padding: 14px
+    }
+
+    .hero-card-stat {
+        font-size: 17px
+    }
+
+    .cat-grid {
+        grid-template-columns: repeat(2, 1fr)
+    }
+
+    .cat-card {
+        padding: 18px 8px
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr
+    }
+
+    .stat-num {
+        font-size: 30px
+    }
+
+    .newsletter h2 {
+        font-size: 24px
+    }
+
+    .payment-methods span {
+        font-size: 10px;
+        padding: 5px 9px
+    }
+}
+
+@media (max-width: 360px) {
+    .hero-image {
+        grid-template-columns: 1fr
+    }
+
+    .header-actions .action-btn {
+        padding: 8px 6px
+    }
+}

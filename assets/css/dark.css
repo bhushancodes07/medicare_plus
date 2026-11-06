@@ -1,0 +1,88 @@
+/* ===== DARK THEME (toggled with body.dark-theme) ===== */
+body.dark-theme {
+    color-scheme: dark;
+    --primary-dark: #0284C7;
+    --primary-light: #0C3A57;
+    --accent-light: #4A2E0A;
+    --bg: #0B1220;
+    --bg-soft: #172033;
+    --surface: #111B2E;
+    --text: #F1F5F9;
+    --text-muted: #94A3B8;
+    --border: #263349;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3);
+    --shadow: 0 4px 12px rgba(0, 0, 0, .4);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, .5);
+}
+
+body.dark-theme .topbar {
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--border)
+}
+
+body.dark-theme .hero {
+    background: linear-gradient(135deg, #0B1220 0%, #12203A 55%, #0F2A44 100%)
+}
+
+body.dark-theme .hero-badge {
+    color: var(--teal)
+}
+
+body.dark-theme .rx-cta {
+    background: linear-gradient(135deg, #2A1F0A, #3A2A0E);
+    border-color: #92400E
+}
+
+body.dark-theme .rx-cta-content h2 {
+    color: #FBBF24
+}
+
+body.dark-theme .rx-cta-content p {
+    color: #FCD34D
+}
+
+body.dark-theme .footer {
+    background: #050A14
+}
+
+body.dark-theme .license-box {
+    background: var(--bg-soft)
+}
+
+body.dark-theme .test-card:hover {
+    background: var(--bg-soft)
+}
+
+body.dark-theme .payment-method.selected {
+    background: var(--primary-light)
+}
+
+body.dark-theme .product-wishlist:hover,
+body.dark-theme .product-wishlist.active {
+    background: rgba(239, 68, 68, .18)
+}
+
+body.dark-theme .toast-icon {
+    background: rgba(16, 185, 129, .18)
+}
+
+body.dark-theme .toast.error .toast-icon {
+    background: rgba(239, 68, 68, .18)
+}
+
+body.dark-theme .free-delivery-bar.unlocked {
+    background: rgba(16, 185, 129, .18);
+    color: #6EE7B7
+}
+
+body.dark-theme .hero-card-icon.green {
+    background: rgba(16, 185, 129, .18)
+}
+
+body.dark-theme .logo-text {
+    color: var(--text)
+}
+
+body.dark-theme .footer .logo-text {
+    color: #fff
+}
